@@ -1,0 +1,27 @@
+# Include your customized HAL commands here
+# The commands in this file are run after the AXIS GUI (including PyVCP panel) starts
+
+
+
+loadrt pwmgen output_type=0
+
+addf pwmgen.make-pulses base-thread
+addf pwmgen.update servo-thread
+
+net pwm_out pwmgen.0.pwm 
+net pwm_out parport.0.pin-14-out 
+net pwm_value pwmgen.0.value 
+net pwm_value pyvcp.value-f
+net pwm_dutycycle pwmgen.0.curr-dc 
+net pwm_dutycycle pyvcp.dutycycle
+
+
+#setp pwmgen.0.scale 30
+setp pwmgen.0.pwm-freq 1000
+setp pwmgen.0.dither-pwm 0
+setp pwmgen.0.min-dc 0.0
+setp pwmgen.0.max-dc 1.0
+
+net pwm_en pwmgen.0.enable
+net pwm_en pyvcp.pwm-en
+

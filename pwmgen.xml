@@ -1,0 +1,29 @@
+<pyvcp>
+
+  <scale>
+    <halpin>"value"</halpin>
+    <font>("Helvetica",16)</font>
+    <width>"25"</width>
+    <resolution>0.05</resolution>
+    <orient>HORIZONTAL</orient>
+    <initval>0</initval>
+    <min_>0</min_>
+    <max_>1</max_>
+  </scale>
+	
+  <checkbutton>
+    <halpin>"pwm-en"</halpin>
+    <text>"pwm on/off"</text>
+  </checkbutton>
+
+  <labelframe text="PWM dutycycle">
+    <number> 
+      <halpin>"dutycycle"</halpin>
+      <font>("Helvetica",24)</font>
+      <format>"1.3f"</format>
+    </number>
+  </labelframe>
+
+
+</pyvcp>
+

@@ -1,0 +1,61 @@
+
+
+## load modules
+loadrt encoder num_chan=1
+loadrt frequency2temperature count=1
+loadrt pid num_chan=1
+loadrt pwmgen output_type=0
+
+## add functions
+addf encoder.capture-position servo-thread
+addf encoder.update-counters base-thread
+addf frequency2temperature.0 servo-thread
+addf pid.0.do-pid-calcs servo-thread
+addf pwmgen.make-pulses base-thread
+addf pwmgen.update servo-thread
+
+## frequency read in
+net temp_pin parport.0.pin-10-in 
+net temp_pin encoder.0.phase-A
+setp encoder.0.counter-mode 1 
+net temp_freq encoder.0.velocity
+net temp_freq pyvcp.temp-freq 
+
+## freq to temp conversion
+net temp_freq frequency2temperature.0.frequency-in
+net temp_degrees frequency2temperature.0.temperature-out 
+net temp_degrees pyvcp.temp-degrees
+
+## PID
+net temp_degrees pid.0.feedback
+net pid_out pid.0.output 
+net pid_out pyvcp.pid-out
+net temp_setpoint pid.0.command 
+net temp_setpoint pyvcp.temp-setpoint-f
+
+setp pid.0.Pgain 0.3
+setp pid.0.Igain 0.0
+setp pid.0.Dgain 0.0
+#setp pid.0.maxoutput 30
+
+
+## PWMgen
+net pid_out pwmgen.0.value
+net pwm_out pwmgen.0.pwm 
+net pwm_out parport.0.pin-14-out 
+net pwm_dutycycle pwmgen.0.curr-dc 
+net pwm_dutycycle pyvcp.dutycycle
+
+#setp pwmgen.0.scale 30
+setp pwmgen.0.pwm-freq 1000
+setp pwmgen.0.dither-pwm 0
+setp pwmgen.0.max-dc 0.5
+setp pwmgen.0.min-dc 0.0
+
+## enable switch for pid and pwm
+net pid_en pid.0.enable
+net pid_en pwmgen.0.enable
+net pid_en pyvcp.pid-en
+
+
+
