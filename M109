@@ -1,0 +1,4 @@
+#!/bin/bash
+
+## reprap command to set temperature
+temperature=$1 

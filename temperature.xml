@@ -55,7 +55,19 @@
 
     </labelframe>
 
+		<labelframe text="P gain">
+			<number> 
+		    		<halpin>"pgain"</halpin>
+		    		<font>("Helvetica",24)</font>
+		    		<format>"1.3f"</format>
+			</number>
+		</labelframe>
+
+
+
+
         <!--
+
 		<labelframe text="P gain">
 			<scale>
 			    <halpin>"pgain"</halpin>

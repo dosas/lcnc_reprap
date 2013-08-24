@@ -5,6 +5,8 @@ loadrt encoder num_chan=1
 loadrt frequency2temperature count=1
 loadrt pid num_chan=1
 loadrt pwmgen output_type=0
+loadrt mux2 
+loadrt mux2bool 
 
 ## add functions
 addf encoder.capture-position servo-thread
@@ -13,6 +15,8 @@ addf frequency2temperature.0 servo-thread
 addf pid.0.do-pid-calcs servo-thread
 addf pwmgen.make-pulses base-thread
 addf pwmgen.update servo-thread
+addf mux2.0 servo-thread
+addf mux2bool.0 servo-thread
 
 ## frequency read in
 net temp_pin parport.0.pin-10-in 
@@ -31,13 +35,20 @@ net temp_degrees pid.0.feedback
 net pid_out pid.0.output 
 net pid_out pyvcp.pid-out
 net temp_setpoint pid.0.command 
-net temp_setpoint pyvcp.temp-setpoint-f
+net temp_setpoint mux2.0.out
+net temp_setpoint_mcode mux2.0.in1
+net temp_setpoint_gui pyvcp.temp-setpoint-f 
+net temp_setpoint_gui mux2.0.in0
+
 
 setp pid.0.Pgain 0.3
 setp pid.0.Igain 0.0
 setp pid.0.Dgain 0.0
 #setp pid.0.maxoutput 30
 
+net pgain pyvcp.pgain pid.0.Pgain 
+#net igain pyvcp.igain pid.0.Igain 
+#net dgain pyvcp.dgain pid.0.Dgain 
 
 ## PWMgen
 net pid_out pwmgen.0.value
@@ -55,7 +66,16 @@ setp pwmgen.0.min-dc 0.0
 ## enable switch for pid and pwm
 net pid_en pid.0.enable
 net pid_en pwmgen.0.enable
-net pid_en pyvcp.pid-en
+#net pid_en pyvcp.pid-en
+
+net pid_en mux2bool.0.out
+net pid_en_mcode mux2bool.0.in1
+net pid_en_gui mux2bool.0.in0
+net pid_en_gui pyvcp.pid-en
+
+
+
+
 
 
 
