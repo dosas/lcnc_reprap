@@ -1,0 +1,75 @@
+component frequency2temperature "Frequency to temperature. \
+Used with a NE555 circuit that converts temperature measured using a \
+100k thermistor to a square-wave of variable frequency. ";
+
+pin in float frequency_in "frequency input";
+pin out float temperature_out "temperature output (C)";
+
+function _ fp;
+license "GPLv2 or later";
+;;
+
+#include <rtapi_math.h> /* exp() and ln() */
+
+extern double log(double);
+
+/* see http://en.wikipedia.org/wiki/Thermistor
+   The B-parameter equation is:
+   1/T = 1/T0 + 1/B * ln(R/R0)
+   for a typical 100k thermistor we have
+   T0 = 298 K
+   R0 = 100 000 ohm
+   B  = 2000 K (?)
+   
+   we get:
+   T = 1/ ( 1/T0 + 1/B * ln(R/R0) )
+   R = R0 exp( B * (1/T - 1/T0) )
+   
+   The 555-circuit used with the thermistor is an "astable" cofiguration
+   see: http://en.wikipedia.org/wiki/555_timer_IC
+   
+   the output frequency is:
+   f = 1 / (ln(2)*(R1+2*R2)*C1)
+   C1 = capacitance from NE555 pins 2 and 6 to ground
+   R2 = resistor between NE555 pins 6 and 7. Place the thermistor here!
+   R1 = resistor between NE555 pin 7 and supply voltage
+   
+   
+   Given a frequency, we must first find the resistance and then the temperature:
+   R2 = 1/2 * ( 1/(f*ln(2)*C1) - R1)
+   and 
+   T = 1/ ( 1/T0 + 1/B * ln(R/R0) )
+*/
+
+
+
+/* thermistor constants */
+const double T0 = 298;     /* NOTE: Kelvin units! */
+const double R0 = 100000;
+const double B = 2000;
+/* NE555 circuit constants */
+const double C1 = 1e-6;
+const double R1 = 3500;
+
+float thermistor2temperature(float R) {
+   float T;
+   if (R<=0)
+       R=0.001; // avoid log(0)
+   T = 1.0/ ( 1.0/T0 + (1.0/B) * log(R/R0) );
+   return T;
+}
+
+float frequency2temperature(double f) {
+    float R, T;
+    if (f<=0)
+        f=1; 
+    R = 0.5 * ( (1.0/(f*0.6931*C1)) - R1);
+
+    T = thermistor2temperature(R);
+    return T;
+}
+
+    
+FUNCTION(_) {
+   temperature_out = frequency2temperature( frequency_in ) - 273.15;
+}
