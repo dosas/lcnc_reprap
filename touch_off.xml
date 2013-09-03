@@ -1,0 +1,18 @@
+
+<pyvcp>
+	<labelframe text="Touchoff">
+		<button>
+		<halpin>"z-axis-touchoff"</halpin>
+		<text>"Z-Axis Touchoff"</text>
+		<font>('Fixed',12)</font>
+		</button>
+<!--
+
+		<button>
+		<halpin>"x-y_zero"</halpin>
+		<text>"X-Y Zero"</text>
+		<font>('Fixed',12)</font>
+		</button>
+-->
+	</labelframe>
+</pyvcp>

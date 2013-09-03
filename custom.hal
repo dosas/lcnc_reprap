@@ -1,2 +1,6 @@
 # Include your customized HAL commands here
 # This file will not be overwritten when you run stepconf again
+
+loadrt classicladder_rt
+addf classicladder.0.refresh servo-thread
+loadusr -w classicladder --nogui touch_off.clp
