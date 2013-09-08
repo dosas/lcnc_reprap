@@ -1,12 +1,12 @@
 <pyvcp>
 <vbox>
-    <labelframe text="Heater-Control">
+    <labelframe text="Extruder-Control">
     <font>("Helvetica",16)</font>
         <vbox>
 		<labelframe text="Measured frequency [Hz]">
 			<number> 
 		    		<halpin>"temp-freq"</halpin>
-		    		<font>("Helvetica",24)</font>
+		    		<font>("Helvetica",22)</font>
 		    		<format>"2.1f"</format>
 			</number>
 		</labelframe> 
@@ -14,12 +14,22 @@
 		<labelframe text="Measured temperature [C]">
 			<number> 
 		    		<halpin>"temp-degrees"</halpin>
-		    		<font>("Helvetica",24)</font>
+		    		<font>("Helvetica",22)</font>
 		    		<format>"2.1f"</format>
 			</number>
 		</labelframe> 
 
+
 		<labelframe text="Temperature set-point [C]">
+			<number> 
+		    		<halpin>"temp-set"</halpin>
+		    		<font>("Helvetica",22)</font>
+		    		<format>"2.1f"</format>
+			</number>
+		</labelframe> 
+
+
+		<labelframe text="Set temperature [C]">
 			<scale>
 			    <halpin>"temp-setpoint"</halpin>
 			    <font>("Helvetica",16)</font>
@@ -34,19 +44,23 @@
 			    <halpin>"pid-en"</halpin>
 			    <text>"PID on/off"</text>
 			</checkbutton>
+			<checkbutton>
+			    <halpin>"man-temp-control"</halpin>
+			    <text>"manual control"</text>
+			</checkbutton>
 		</labelframe> 
 
 		<labelframe text="PID output">
 			<number> 
 		    		<halpin>"pid-out"</halpin>
-		    		<font>("Helvetica",24)</font>
+		    		<font>("Helvetica",22)</font>
 		    		<format>"4.2f"</format>
 			</number>
 		</labelframe> 
 		<labelframe text="PWM dutycycle">
 			<number> 
 		    		<halpin>"dutycycle"</halpin>
-		    		<font>("Helvetica",24)</font>
+		    		<font>("Helvetica",22)</font>
 		    		<format>"1.3f"</format>
 			</number>
 		</labelframe>
@@ -58,7 +72,7 @@
 		<labelframe text="P gain">
 			<number> 
 		    		<halpin>"pgain"</halpin>
-		    		<font>("Helvetica",24)</font>
+		    		<font>("Helvetica",22)</font>
 		    		<format>"1.3f"</format>
 			</number>
 		</labelframe>

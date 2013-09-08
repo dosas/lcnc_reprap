@@ -36,10 +36,11 @@ net pid_out pid.0.output
 net pid_out pyvcp.pid-out
 net temp_setpoint pid.0.command 
 net temp_setpoint mux2.0.out
-net temp_setpoint_mcode mux2.0.in1
+net temp_setpoint pyvcp.temp-set
+net temp_setpoint_mcode mux2.0.in0
 net temp_setpoint_gui pyvcp.temp-setpoint-f 
-net temp_setpoint_gui mux2.0.in0
-
+net temp_setpoint_gui mux2.0.in1
+net temp_mux_sel pyvcp.man-temp-control mux2.0.sel
 
 setp pid.0.Pgain 0.3
 setp pid.0.Igain 0.0
@@ -66,13 +67,12 @@ setp pwmgen.0.min-dc 0.0
 ## enable switch for pid and pwm
 net pid_en pid.0.enable
 net pid_en pwmgen.0.enable
-#net pid_en pyvcp.pid-en
 
 net pid_en mux2bool.0.out
-net pid_en_mcode mux2bool.0.in1
-net pid_en_gui mux2bool.0.in0
+net pid_en_mcode mux2bool.0.in0
+net pid_en_gui mux2bool.0.in1
 net pid_en_gui pyvcp.pid-en
-
+net temp_mux_sel mux2bool.0.sel 
 
 
 

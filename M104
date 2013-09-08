@@ -4,20 +4,12 @@
 
 TEMPERATURE=$1
 
-
-
 if [ $TEMPERATURE == 0 ] 
 then
-	halcmd setp mux2bool.0.sel 1
 	halcmd sets pid_en_mcode 0 
-	halcmd setp mux2.0.sel 1
 	halcmd sets temp_setpoint_mcode $TEMPERATURE
 else
-	eog /home/linuxcnc/Desktop/gnu-head.png
-	halcmd setp mux2bool.0.sel 1
 	halcmd sets pid_en_mcode 1 
-	halcmd sets pgain 0.4
-	halcmd setp mux2.0.sel 1
 	halcmd sets temp_setpoint_mcode $TEMPERATURE
 fi
 

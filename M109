@@ -1,4 +1,29 @@
 #!/bin/bash
 
-## reprap command to set temperature
-temperature=$1 
+## reprap command to set temperature and wait for it to be reached
+
+SET_TEMPERATURE=$1
+
+if [ $SET_TEMPERATURE == 0 ] 
+then
+	halcmd sets pid_en_mcode 0 
+	halcmd sets temp_setpoint_mcode $SET_TEMPERATURE
+else
+	halcmd sets pid_en_mcode 1 
+	halcmd sets temp_setpoint_mcode $SET_TEMPERATURE
+	for (( ; ; ))
+	do	 
+	    IS_TEMPERATURE=`halcmd getp frequency2temperature.0.temperature-out`      
+	    COMP_RESULT=`echo "$IS_TEMPERATURE >= $SET_TEMPERATURE  " | bc`
+	    if [ $COMP_RESULT -eq 1 ]
+	    then
+		echo $IS_TEMPERATURE > /home/linuxcnc/Desktop/test.test
+		exit 0
+	    fi
+	    sleep 1
+	done
+
+fi
+
+exit 0
+
