@@ -1,18 +1,33 @@
 
 <pyvcp>
-	<labelframe text="Touchoff">
-		<button>
-		<halpin>"z-axis-touchoff"</halpin>
-		<text>"Z-Axis Touchoff"</text>
-		<font>('Fixed',12)</font>
-		</button>
-<!--
 
-		<button>
-		<halpin>"x-y_zero"</halpin>
-		<text>"X-Y Zero"</text>
-		<font>('Fixed',12)</font>
-		</button>
--->
-	</labelframe>
+  <labelframe text="Touchoff">
+    
+    <hbox>
+      
+      <button>
+	<halpin>"z-axis-touchoff"</halpin>
+	<text>"Z-Axis Touchoff"</text>
+	<font>('Fixed',12)</font>
+      </button>
+      
+      
+      <led>
+	<halpin>"probe-in"</halpin> 
+	<size>25</size> 
+	<on_color>"green"</on_color>
+	<off_color>"red"</off_color>
+      </led>
+
+    </hbox>
+
+    <!--
+       <button>
+	 <halpin>"x-y_zero"</halpin>
+	 <text>"X-Y Zero"</text>
+	 <font>('Fixed',12)</font>
+       </button>
+       -->
+
+  </labelframe>
 </pyvcp>
