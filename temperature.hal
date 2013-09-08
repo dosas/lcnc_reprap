@@ -47,7 +47,7 @@ setp pid.0.Igain 0.0
 setp pid.0.Dgain 0.0
 #setp pid.0.maxoutput 30
 
-net pgain pyvcp.pgain pid.0.Pgain 
+#net pgain pyvcp.pgain pid.0.Pgain 
 #net igain pyvcp.igain pid.0.Igain 
 #net dgain pyvcp.dgain pid.0.Dgain 
 

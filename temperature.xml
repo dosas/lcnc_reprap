@@ -1,109 +1,132 @@
 <pyvcp>
-<vbox>
+  <vbox>
     <labelframe text="Extruder-Control">
-    <font>("Helvetica",16)</font>
-        <vbox>
-		<labelframe text="Measured frequency [Hz]">
-			<number> 
-		    		<halpin>"temp-freq"</halpin>
-		    		<font>("Helvetica",22)</font>
-		    		<format>"2.1f"</format>
-			</number>
-		</labelframe> 
+      <font>("Helvetica",16)</font>
+      <vbox>
+	<labelframe text="Measured frequency [Hz]">
+	  <number> 
+	    <halpin>"temp-freq"</halpin>
+	    <font>("Helvetica",22)</font>
+	    <format>"2.1f"</format>
+	  </number>
+	</labelframe> 
 
-		<labelframe text="Measured temperature [C]">
-			<number> 
-		    		<halpin>"temp-degrees"</halpin>
-		    		<font>("Helvetica",22)</font>
-		    		<format>"2.1f"</format>
-			</number>
-		</labelframe> 
-
-
-		<labelframe text="Temperature set-point [C]">
-			<number> 
-		    		<halpin>"temp-set"</halpin>
-		    		<font>("Helvetica",22)</font>
-		    		<format>"2.1f"</format>
-			</number>
-		</labelframe> 
+	<labelframe text="Measured temperature [C]">
+	  <number> 
+	    <halpin>"temp-degrees"</halpin>
+	    <font>("Helvetica",22)</font>
+	    <format>"2.1f"</format>
+	  </number>
+	</labelframe> 
 
 
-		<labelframe text="Set temperature [C]">
-			<scale>
-			    <halpin>"temp-setpoint"</halpin>
-			    <font>("Helvetica",16)</font>
-			    <width>"25"</width>
-			    <resolution>1.0</resolution>
-			    <orient>HORIZONTAL</orient>
-			    <initval>0</initval>
-			    <min_>0</min_>
-			    <max_>300</max_>
-			</scale>
-			<checkbutton>
-			    <halpin>"pid-en"</halpin>
-			    <text>"PID on/off"</text>
-			</checkbutton>
-			<checkbutton>
-			    <halpin>"man-temp-control"</halpin>
-			    <text>"manual control"</text>
-			</checkbutton>
-		</labelframe> 
-
-		<labelframe text="PID output">
-			<number> 
-		    		<halpin>"pid-out"</halpin>
-		    		<font>("Helvetica",22)</font>
-		    		<format>"4.2f"</format>
-			</number>
-		</labelframe> 
-		<labelframe text="PWM dutycycle">
-			<number> 
-		    		<halpin>"dutycycle"</halpin>
-		    		<font>("Helvetica",22)</font>
-		    		<format>"1.3f"</format>
-			</number>
-		</labelframe>
-		
-        </vbox>
-
-    </labelframe>
-
-		<labelframe text="P gain">
-			<number> 
-		    		<halpin>"pgain"</halpin>
-		    		<font>("Helvetica",22)</font>
-		    		<format>"1.3f"</format>
-			</number>
-		</labelframe>
+	<labelframe text="Temperature set-point [C]">
+	  <number> 
+	    <halpin>"temp-set"</halpin>
+	    <font>("Helvetica",22)</font>
+	    <format>"2.1f"</format>
+	  </number>
+	</labelframe> 
 
 
+	<labelframe text="Set temperature [C]">
+
+	  <scale>
+	    <halpin>"temp-setpoint"</halpin>
+	    <font>("Helvetica",16)</font>
+	    <width>"25"</width>
+	    <resolution>1.0</resolution>
+	    <orient>HORIZONTAL</orient>
+	    <initval>0</initval>
+	    <min_>0</min_>
+	    <max_>300</max_>
+	  </scale>
+
+	  <checkbutton>
+	    <halpin>"pid-en"</halpin>
+	    <text>"PID on/off"</text>
+	  </checkbutton>
+
+	  <checkbutton>
+	    <halpin>"man-temp-control"</halpin>
+	    <text>"manual control"</text>
+	  </checkbutton>
+
+	</labelframe> 
+
+	<labelframe text="PID output">
+	  <number> 
+	    <halpin>"pid-out"</halpin>
+	    <font>("Helvetica",22)</font>
+	    <format>"4.2f"</format>
+	  </number>
+	</labelframe> 
+	<labelframe text="PWM dutycycle">
+	  <number> 
+	    <halpin>"dutycycle"</halpin>
+	    <font>("Helvetica",22)</font>
+	    <format>"1.3f"</format>
+	  </number>
+	</labelframe>
+	
+      </vbox>     
+
+      <!--
+
+      <hbox>
+
+	<labelframe text="P gain">
+	  <number> 
+	    <halpin>"pgain"</halpin>
+	    <font>("Helvetica",12)</font>
+	    <format>"1.3f"</format>
+	  </number>
+	</labelframe>
 
 
-        <!--
-
-		<labelframe text="P gain">
-			<scale>
-			    <halpin>"pgain"</halpin>
-			    <font>("Helvetica",16)</font>
-			    <width>"25"</width>
-			    <resolution>0.05</resolution>
-			    <orient>HORIZONTAL</orient>
-			    <initval>0</initval>
-			    <min_>0</min_>
-			    <max_>1.0</max_>
-			</scale>
-		</labelframe> 
+	<labelframe text="D gain">
+	  <number> 
+	    <halpin>"igain"</halpin>
+	    <font>("Helvetica",12)</font>
+	    <format>"1.3f"</format>
+	  </number>
+	</labelframe>
 
 
+	<labelframe text="I gain">
+	  <number> 
+	    <halpin>"dgain"</halpin>
+	    <font>("Helvetica",12)</font>
+	    <format>"1.3f"</format>
+	  </number>
+	</labelframe>
+	
+      </hbox>
 
-    <labelframe text="Extruder-Control">
-  
 
+	 <labelframe text="P gain">
+	   <scale>
+	     <halpin>"pgain"</halpin>
+	     <font>("Helvetica",16)</font>
+	     <width>"25"</width>
+	     <resolution>0.05</resolution>
+	     <orient>HORIZONTAL</orient>
+	     <initval>0</initval>
+	     <min_>0</min_>
+	     <max_>1.0</max_>
+	   </scale>
+	 </labelframe> 
+
+
+
+	 <labelframe text="Extruder-Control">
+	   
+
+
+	 </labelframe>   
+
+	 -->
 
     </labelframe>   
-
--->
-
-</vbox>
+  </vbox>
 </pyvcp>
