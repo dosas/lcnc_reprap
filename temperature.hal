@@ -74,6 +74,11 @@ net pid_en_gui mux2bool.0.in1
 net pid_en_gui pyvcp.pid-en
 net temp_mux_sel mux2bool.0.sel 
 
+## for pid tuning
+loadrt passthru count=1
+addf passthru.0 servo-thread
+net p-gain-in <= pyvcp.Pgain => passthru.0.in 
+net p-gain-out <= passthru.0.out => pid.0.Pgain
 
 
 

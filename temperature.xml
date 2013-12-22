@@ -126,6 +126,21 @@
 	 </labelframe>   
 
 	 -->
+      <!-- only for tuning -->
+      <dial>
+	<size>150</size>
+	<cpr>20</cpr>
+	<min_>0</min_>
+	<max_>100000</max_>
+	<text>"P"</text>
+	<initval>0</initval>
+	<resolution>0.001</resolution>
+	<halpin>"Pgain"</halpin>
+	<dialcolor>"yellow"</dialcolor>
+	<edgecolor>"green"</edgecolor>
+	<dotcolor>"black"</dotcolor>
+      </dial>
+
 
     </labelframe>   
   </vbox>
